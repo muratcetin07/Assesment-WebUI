@@ -1,0 +1,38 @@
+﻿@model UserSubscriptionViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    var i = 0;
+}
+
+<h1> My Books </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Text</th>
+            <th scope="col" style="text-align:right">Purchase Price</th>
+            <th scope="col">Unsubscribe</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model?.UserSubscriptionListResponse?.Books)
+        {
+            i++;
+        <tr>
+            <th scope="row">@i</th>
+            <td scope="row">@item.Name</td>
+            <td scope="row">@item.Text</td>
+            <td scope="row" style="text-align:right">$@item.PurchasePrice</td>
+            <td>
+                @Html.ActionLink("Unsubscribe", "Unsubscribe", "Home", new { BookId = item.Id })
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+
